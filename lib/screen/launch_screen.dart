@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kader_new_flutter_app/screen/home_screen.dart';
-import 'package:kader_new_flutter_app/screen/login_webview_screen.dart';
 import 'package:kader_new_flutter_app/screen/webview_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LaunchScreen extends StatefulWidget {
   static final routeName = "launchpage";
@@ -12,11 +12,14 @@ class LaunchScreen extends StatefulWidget {
 }
 class _LaunchScreenState extends State<LaunchScreen> {
 
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  Future<String> _token;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    isLoggedIn();
     Future.delayed(Duration(seconds: 3), () {
         // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
       Navigator.pushReplacementNamed(context, WebViewLogin.routeName);
@@ -65,5 +68,25 @@ class _LaunchScreenState extends State<LaunchScreen> {
       ),
 
     );
+  }
+  void isLoggedIn() async{
+    final SharedPreferences prefs = await _prefs;
+    String token = prefs.getString('token');
+    if(token != null){
+      Future.delayed(Duration(seconds: 3), () {
+
+        // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
+        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+
+      });
+    }else{
+      Future.delayed(Duration(seconds: 3), () {
+
+        // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
+        Navigator.pushReplacementNamed(context, WebViewLogin.routeName);
+
+      });
+    }
+
   }
 }

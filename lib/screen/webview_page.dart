@@ -270,6 +270,8 @@ class _MyAppState extends State<WebViewLogin> {
           prefs.setString("ministry_cd", sso_info.ministryCd == null ? "": sso_info.ministryCd);
           prefs.setString("sso_info", verify_response.data.toString());
 
+          prefs.setString("accessToken", sso_token.accessToken);
+
           Navigator.pop(context);
           Navigator.pushReplacementNamed(context, HomeScreen.routeName);
 
