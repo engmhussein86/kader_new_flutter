@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    context.setLocale(Locale('ar'));
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(

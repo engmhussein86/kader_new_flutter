@@ -20,11 +20,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
     // TODO: implement initState
     super.initState();
     isLoggedIn();
-    Future.delayed(Duration(seconds: 3), () {
-        // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
-      Navigator.pushReplacementNamed(context, WebViewLogin.routeName);
-
-    });
+    // Future.delayed(Duration(seconds: 3), () {
+    //     // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
+    //   Navigator.pushReplacementNamed(context, WebViewLogin.routeName);
+    //
+    // });
   }
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
                // width: SizeConfig.scaleWidth(164),
                 //height: SizeConfig.scaleHeight(52),
                 child:  Text(
-                  "موظقي وزارة الصحة الفلسطينية",
+                  "موظفي وزارة الصحة الفلسطينية",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.9),
@@ -72,21 +72,22 @@ class _LaunchScreenState extends State<LaunchScreen> {
   void isLoggedIn() async{
     final SharedPreferences prefs = await _prefs;
     String token = prefs.getString('token');
-    if(token != null){
-      Future.delayed(Duration(seconds: 3), () {
-
-        // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
-        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-
-      });
-    }else{
-      Future.delayed(Duration(seconds: 3), () {
-
-        // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
-        Navigator.pushReplacementNamed(context, WebViewLogin.routeName);
-
-      });
-    }
+    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    // if(token != null){
+    //   Future.delayed(Duration(seconds: 3), () {
+    //
+    //     // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
+    //     Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    //
+    //   });
+    // }else{
+    //   Future.delayed(Duration(seconds: 3), () {
+    //
+    //     // Navigator.pushReplacementNamed(context, LoginWebViewScreen.routeName);
+    //     Navigator.pushReplacementNamed(context, WebViewLogin.routeName);
+    //
+    //   });
+    // }
 
   }
 }
